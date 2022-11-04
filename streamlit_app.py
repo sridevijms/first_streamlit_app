@@ -105,4 +105,4 @@ add_my_fruit = streamlit.text_input('Testing frouts?')
 if streamlit.button('Add the fruit to load'):
     my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
     my_data_rows=add_fruite_load_list(add_my_fruit)
-    streamlit.text("Back from func")
+    streamlit.text("Back from func"+my_data_rows)
