@@ -56,3 +56,9 @@ my_cur.execute("SELECT * from fruit_load_list")
 my_data_row = my_cur.fetchone()
 streamlit.text("fruit_load_list in datagrame:")
 streamlit.dataframe(my_data_row)
+
+
+my_cur.execute("SELECT * from fruit_load_list")
+my_data_rowa = my_cur.fetchall()
+streamlit.text("fruit_load_list in my_data_rowa:")
+streamlit.dataframe(my_data_rowa)
