@@ -5,6 +5,13 @@ import requests
 import snowflake.connector
 from urllib.error import URLError
 
+
+def get_fruity_vice_date(this_fruit_choice):
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+    return (fruityvice_normalized)
+
+
 streamlit.title("my Test page in streamlit")
 streamlit.header("my Test page in header")
 streamlit.subheader("my Test page in subheader")
@@ -34,13 +41,14 @@ try:
     if not fruit_choice:
         streamlit.error('The user entered . Please select')
     else:
-        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-        # streamlit.write('The user entered ', fruit_choice)
-        # streamlit.text(fruityvice_response.json())
-        # write your own comment -what does the next line do?
-        fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+        # fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+        # # streamlit.write('The user entered ', fruit_choice)
+        # # streamlit.text(fruityvice_response.json())
+        # # write your own comment -what does the next line do?
+        # fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
         # write your own comment - what does this do?
-        streamlit.dataframe(fruityvice_normalized)
+        backfromfunction=get_fruity_vice_date(fruit_choice)
+        streamlit.dataframe(backfromfunction)
 except URLError as e:
     streamlit.error()
 
